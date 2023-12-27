@@ -1,1 +1,3 @@
 bin/ffxiv-otp.py
+.ssh/
+.gnupg/

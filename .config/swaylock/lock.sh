@@ -40,7 +40,7 @@ rm logo-ed_screen.png
 # imagemagick to simply composite that logo (no blurring)
 # (test is not done in a controlled environment, but you get the idea)
 # I FUCKING LOVE FFMPEG!!
-ffmpeg -i /home/lfron/Backgrounds/ink.jpeg -vf \
+ffmpeg -i "$HOME/Backgrounds/ink.jpeg" -vf \
   "[in] gblur=sigma=$1 [out]" \
   logo-ed_screen.png
 
