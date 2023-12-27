@@ -1,0 +1,190 @@
+set $mod Mod4
+set $term alacritty
+set $menu wofi --show=drun | xargs swaymsg exec --
+
+include /etc/sway/config.d/*
+include "$HOME/.cache/wal/colors-sway"
+
+# class                 border    backgr.   text      indicator child_border
+client.focused          #066C71   #066C71   #175564   #066C71   #066C71
+client.unfocused        #06070A   #06070A   #06070A   #06070A   #06070A
+client.focused_inactive #414255   #414255   #175564   #414255   #414255
+client.urgent           #175564  #175564  #79c4c6   #175564  #175564
+client.placeholder      #414255   #414255   #79c4c6   #414255   #414255
+
+client.background       #06070A
+
+## Background
+output * background $wallpaper fill
+
+for_window [tiling] border pixel 4
+for_window [floating] border pixel 6
+#gaps inner 5
+#gaps outer 2
+
+output DP-1 mode 3440x1440@144Hz pos 0 830 adaptive_sync off render_bit_depth 10
+output DP-2 mode 2560x1440@144Hz pos 3440 0 transform 90 adaptive_sync off
+output DP-3 mode 1920x1080@144Hz pos 4880 980 adaptive_sync off
+workspace 1 output DP-1
+workspace 3 output DP-2
+workspace 2 output DP-3
+
+input type:pointer {
+	accel_profile "flat"
+	pointer_accel 0
+}
+
+input "12431:19:Input_Club_Keyboard_-_Kira_PixelMap_USB" xkb_numlock enable
+
+for_window [class="steam_app*"] inhibit_idle focus
+for_window [class="ffxiv_dx11.exe"] inhibit_idle open
+for_window [class="Citra"] inhibit_idle open
+for_window [app_id="mpv"] inhibit_idle focus
+for_window [app_id="mpv"] floating enable
+for_window [class="battle.net.exe"] floating enable
+for_window [app_id="galculator"] floating enable
+for_window [class="Celeste.bin.x86_64"] inhibit_idle focus
+for_window [class="WowUpCf"] floating enable
+
+### Key bindings
+#
+# Basics:
+#
+    # Start a terminal
+    bindsym $mod+Return exec $term
+
+    # Kill focused window
+    bindsym $mod+Shift+q kill
+
+    # Start your launcher
+    bindsym $mod+d exec $menu
+
+    # Drag floating windows by holding down $mod and left mouse button.
+    # Resize them with right mouse button + $mod.
+    # Despite the name, also works for non-floating windows.
+    # Change normal to inverse to use left mouse button for resizing and right
+    # mouse button for dragging.
+    floating_modifier $mod normal
+
+    # Reload the configuration file
+    bindsym $mod+Shift+c reload
+
+    # Exit sway (logs you out of your Wayland session)
+    bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. What would you like to do?' \
+                                            -b 'Exit sway' 'swaymsg exit' \
+                                            -b 'Shutdown' 'swaymsg exec shutdown now' \
+                                            -b 'Reboot' 'swaymsg exec reboot'
+#
+# Moving around:
+#
+    # Move your focus around
+    bindsym $mod+Left focus left
+    bindsym $mod+Down focus down
+    bindsym $mod+Up focus up
+    bindsym $mod+Right focus right
+
+    # Move the focused window with the same, but add Shift
+    bindsym $mod+Shift+Left move left
+    bindsym $mod+Shift+Down move down
+    bindsym $mod+Shift+Up move up
+    bindsym $mod+Shift+Right move right
+#
+# Workspaces:
+#
+    # Switch to workspace
+    bindsym $mod+1 workspace number 1
+    bindsym $mod+2 workspace number 2
+    bindsym $mod+3 workspace number 3
+    bindsym $mod+4 workspace number 4
+    bindsym $mod+5 workspace number 5
+    bindsym $mod+6 workspace number 6
+    bindsym $mod+7 workspace number 7
+    bindsym $mod+8 workspace number 8
+    bindsym $mod+9 workspace number 9
+    bindsym $mod+0 workspace number 10
+    # Move focused container to workspace
+    bindsym $mod+Shift+1 move container to workspace number 1
+    bindsym $mod+Shift+2 move container to workspace number 2
+    bindsym $mod+Shift+3 move container to workspace number 3
+    bindsym $mod+Shift+4 move container to workspace number 4
+    bindsym $mod+Shift+5 move container to workspace number 5
+    bindsym $mod+Shift+6 move container to workspace number 6
+    bindsym $mod+Shift+7 move container to workspace number 7
+    bindsym $mod+Shift+8 move container to workspace number 8
+    bindsym $mod+Shift+9 move container to workspace number 9
+    bindsym $mod+Shift+0 move container to workspace number 10
+    # Note: workspaces can have any name you want, not just numbers.
+    # We just use 1-10 as the default.
+#
+# Layout stuff:
+#
+    # You can "split" the current object of your focus with
+    # $mod+b or $mod+v, for horizontal and vertical splits
+    # respectively.
+    bindsym $mod+b splith
+    bindsym $mod+v splitv
+
+    # Switch the current container between different layout styles
+    bindsym $mod+s layout stacking
+    bindsym $mod+w layout tabbed
+    bindsym $mod+e layout toggle split
+
+    # Make the current focus fullscreen
+    bindsym $mod+f fullscreen
+
+    # Toggle the current focus between tiling and floating mode
+    bindsym $mod+Shift+space floating toggle
+
+    # Swap focus between the tiling area and the floating area
+    bindsym $mod+space focus mode_toggle
+
+    # Move focus to the parent container
+    bindsym $mod+a focus parent
+
+# capture all screens to clipboard    
+bindsym Shift+Print exec grim - | wl-copy    
+
+# capture the specified screen area to clipboard    
+bindsym $mod+Shift+s exec grim -g "$(slurp)" - | wl-copy
+
+bindsym $mod+Shift+d exec grim -g "$(slurp)"
+
+# capture the focused monitor to clipboard    
+#bindsym Control+Print exec grim -o $(swaymsg -t get_outputs | jq -r '.[] | select(.focused) 
+
+#generate ffxiv otp
+bindsym $mod+o exec python ~/bin/ffxiv-otp.py
+
+#media
+bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +1%
+bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -1%
+bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
+bindsym XF86AudioPlay exec playerctl play-pause
+bindsym XF86AudioNext exec playerctl next
+bindsym XF86AudioPrev exec playerctl previous
+
+#reload waybar
+exec_always "$HOME/.config/waybar/run.sh"
+
+# set locker timeout
+exec_always killall swayidle
+exec_always sh $HOME/.config/sway/swayidle.sh
+
+# enable lock ($mod+shift+l)
+bindsym $mod+Shift+l exec $HOME/.config/swaylock/lock.sh 50
+
+font pango:monospace 8
+seat seat0 xcursor_theme capitaine-cursors 24
+exec_always {
+    gsettings set org.gnome.desktop.interface cursor-theme capitaine-cursors
+    gsettings set org.gnome.desktop.interface cursor-size 24
+    gsettings set org.gnome.desktop.interface gtk-theme "Adapta-Nokto"
+    gsettings set org.gnome.desktop.interface icon-theme "Papirus-Dark"
+    gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
+}
+exec systemctl --user import-environment
+exec /usr/lib/polkit-kde-authentication-agent-1
+exec pcmanfm -d
+exec steam -silent
+exec corectrl
+exec ckb-next -b -p Default
