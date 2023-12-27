@@ -1,0 +1,11 @@
+[user]
+	name = Gwen
+	email = tallrainfall@protonmail.com
+	signingkey = DB217282761220F3
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[commit]
+	gpgsign = true
