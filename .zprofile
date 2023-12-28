@@ -7,7 +7,6 @@ export XDG_SESSION_TYPE=wayland
 export CARGO_HOME="$XDG_DATA_HOME"/cargo
 export GOPATH="$XDG_DATA_HOME"/go
 export NUGET_PACKAGES="$XDG_CACHE_HOME"/NuGetPackages
-export ZSH="$XDG_DATA_HOME"/oh-my-zsh
 export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR"/gcr/ssh
 export WINEPREFIX="$XDG_DATA_HOME"/wine
 export QT_QPA_PLATFORM="wayland;xcb"
