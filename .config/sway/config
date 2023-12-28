@@ -182,9 +182,10 @@ exec_always {
     gsettings set org.gnome.desktop.interface icon-theme "Papirus-Dark"
     gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
 }
-exec systemctl --user import-environment
 exec /usr/lib/polkit-kde-authentication-agent-1
-exec pcmanfm -d
+exec pcmanfm-qt -d
 exec steam -silent
 exec corectrl
 exec ckb-next -b -p Default
+exec blueman-applet
+exec protonmail-bridge --no-window

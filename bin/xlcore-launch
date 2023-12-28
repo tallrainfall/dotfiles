@@ -1,8 +1,6 @@
 #!/usr/bin/env bash
 
-export XMODIFIERS="@im=null"
 export RADV_PERFTEST=gpl,sam,bolist
-export LC_ALL=C.UTF-8
 
 if pgrep -fx "XIVLauncher.Core" >/dev/null 2>&1
 then
