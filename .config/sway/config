@@ -22,7 +22,7 @@ for_window [floating] border pixel 6
 #gaps inner 5
 #gaps outer 2
 
-output DP-1 mode 3440x1440@144Hz pos 0 830 adaptive_sync off render_bit_depth 10
+output DP-1 mode 3440x1440@144Hz pos 0 830 adaptive_sync off
 output DP-2 mode 2560x1440@144Hz pos 3440 0 transform 90 adaptive_sync off
 output DP-3 mode 1920x1080@144Hz pos 4880 980 adaptive_sync off
 workspace 1 output DP-1
@@ -188,4 +188,3 @@ exec steam -silent
 exec corectrl
 exec ckb-next -b -p Default
 exec blueman-applet
-exec protonmail-bridge --no-window

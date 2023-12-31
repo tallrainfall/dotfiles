@@ -4,6 +4,7 @@ export XDG_STATE_HOME="$HOME"/.local/state
 export XDG_CONFIG_HOME="$HOME"/.config
 export XDG_CURRENT_DESKTOP=sway
 export XDG_SESSION_TYPE=wayland
+export XDG_SESSION_DESKTOP=sway
 export CARGO_HOME="$XDG_DATA_HOME"/cargo
 export GOPATH="$XDG_DATA_HOME"/go
 export NUGET_PACKAGES="$XDG_CACHE_HOME"/NuGetPackages
