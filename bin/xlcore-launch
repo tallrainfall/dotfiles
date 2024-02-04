@@ -2,6 +2,8 @@
 
 export RADV_PERFTEST=gpl,sam,bolist
 
+rm $HOME/.xlcore/wineprefix/drive_c/users/$USER/AppData/Local/NUCefSharp/pid.txt
+
 if pgrep -fx "XIVLauncher.Core" >/dev/null 2>&1
 then
     killall XIVLauncher.Core

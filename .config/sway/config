@@ -6,11 +6,11 @@ include /etc/sway/config.d/*
 include "$HOME/.cache/wal/colors-sway"
 
 # class                 border    backgr.   text      indicator child_border
-client.focused          #066C71   #066C71   #175564   #066C71   #066C71
-client.unfocused        #06070A   #06070A   #06070A   #06070A   #06070A
-client.focused_inactive #414255   #414255   #175564   #414255   #414255
-client.urgent           #175564  #175564  #79c4c6   #175564  #175564
-client.placeholder      #414255   #414255   #79c4c6   #414255   #414255
+client.focused          $color2   $color2   $color1   $color2   $color2
+client.unfocused        $color0   $color0   $color0   $color0   $color0
+client.focused_inactive $color3   $color3   $color1   $color3   $color3
+client.urgent           $color15  $color15  $color7   $color15  $color15
+client.placeholder      $color3   $color3   $color7   $color3   $color3
 
 client.background       #06070A
 
@@ -34,17 +34,15 @@ input type:pointer {
 	pointer_accel 0
 }
 
-input "12431:19:Input_Club_Keyboard_-_Kira_PixelMap_USB" xkb_numlock enable
+input "12815:20555:Glorious_GMMK_V2_96_ANSI_Keyboard" xkb_numlock enable
 
 for_window [class="steam_app*"] inhibit_idle focus
 for_window [class="ffxiv_dx11.exe"] inhibit_idle open
-for_window [class="Citra"] inhibit_idle open
+for_window [class="ffxiv_dx11.exe"] floating enable
 for_window [app_id="mpv"] inhibit_idle focus
 for_window [app_id="mpv"] floating enable
 for_window [class="battle.net.exe"] floating enable
 for_window [app_id="galculator"] floating enable
-for_window [class="Celeste.bin.x86_64"] inhibit_idle focus
-for_window [class="WowUpCf"] floating enable
 
 ### Key bindings
 #
@@ -122,12 +120,12 @@ for_window [class="WowUpCf"] floating enable
     # $mod+b or $mod+v, for horizontal and vertical splits
     # respectively.
     bindsym $mod+b splith
-    bindsym $mod+v splitv
+    bindsym $mod+n splitv
 
     # Switch the current container between different layout styles
-    bindsym $mod+s layout stacking
-    bindsym $mod+w layout tabbed
-    bindsym $mod+e layout toggle split
+#    bindsym $mod+s layout stacking
+#    bindsym $mod+w layout tabbed
+#    bindsym $mod+e layout toggle split
 
     # Make the current focus fullscreen
     bindsym $mod+f fullscreen
@@ -155,6 +153,13 @@ bindsym $mod+Shift+d exec grim -g "$(slurp)"
 #generate ffxiv otp
 bindsym $mod+o exec python ~/bin/ffxiv-otp.py
 
+#cliphist
+bindsym $mod+v exec cliphist list | wofi --dmenu | cliphist decode | wl-copy
+bindsym $mod+Shift+v exec cliphist wipe
+
+#start pcmanfm
+bindsym $mod+e exec pcmanfm-qt
+
 #media
 bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +1%
 bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -1%
@@ -181,10 +186,13 @@ exec_always {
     gsettings set org.gnome.desktop.interface gtk-theme "Adapta-Nokto"
     gsettings set org.gnome.desktop.interface icon-theme "Papirus-Dark"
     gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
+    gsettings set org.freedesktop.appearance.color-scheme 'prefer-dark'
 }
 exec /usr/lib/polkit-kde-authentication-agent-1
 exec pcmanfm-qt -d
 exec steam -silent
-exec corectrl
-exec ckb-next -b -p Default
+exec solaar --window=hide
 exec blueman-applet
+exec corectrl --minimize-systray
+exec wljoywake
+exec wl-paste --watch cliphist store
