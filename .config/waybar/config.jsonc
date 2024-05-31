@@ -1,0 +1,439 @@
+[
+    {
+        "output": "DP-1",
+        "layer": "top",
+        "position": "top",
+        "height": "auto",
+        "modules-left": [
+            "sway/workspaces"
+        ],
+        "modules-center": [
+            "sway/window"
+        ],
+        "modules-right": [
+            "mpd",
+            "pulseaudio",
+            "network",
+            "cpu",
+            "memory",
+            "tray",
+            "clock"
+        ],
+        // Modules configuration
+        "sway/workspaces": {
+            "active-only": false,
+            "all-outputs": false,
+            "format": "{icon}",
+            "show-special": false,
+            "on-click": "activate",
+            "format-icons": {
+                //"active": "",
+                //"default": ""
+                "1": "Ⅰ",
+                "2": "Ⅱ",
+                "3": "Ⅲ ",
+                "4": "Ⅳ",
+                "5": "Ⅴ",
+                "6": "Ⅵ",
+                "7": "Ⅶ",
+                "8": "Ⅷ",
+                "9": "Ⅸ",
+                "10": "Ⅹ"
+            }
+        },
+        "sway/window": {
+            "format": "{}",
+            "max-length": 40,
+            "separate-outputs": true,
+            "offscreen-css": true,
+            "offscreen-css-text": "(inactive)",
+            "rewrite": {
+                "(.*) — Mozilla Firefox": " $1",
+                "(.*) - fish": "> [$1]",
+                "(.*) - zsh": "> [$1]",
+                "(.*) - alacritty": "> [$1]"
+            }
+        },
+        "tray": {
+            "icon-size": 15,
+            "spacing": 8
+        },
+        "clock": {
+            "interval": 1,
+            // "format": " {:%H:%M:%S}",
+            //"format": "{: %R   %d/%m}",
+            "format": " {:%H:%M   %D}",
+            "tooltip-format": "<tt><small>{calendar}</small></tt>",
+            "calendar": {
+                "mode": "year",
+                "mode-mon-col": 3,
+                "weeks-pos": "right",
+                "on-scroll": 1,
+                "format": {
+                    "months": "<span color='#ffead3'><b>{}</b></span>",
+                    "days": "<span color='#ecc6d9'><b>{}</b></span>",
+                    "weeks": "<span color='#99ffdd'><b>W{}</b></span>",
+                    "weekdays": "<span color='#ffcc66'><b>{}</b></span>",
+                    "today": "<span color='#ff6699'><b><u>{}</u></b></span>"
+                }
+            }
+        },
+        "actions": {
+            "on-click-right": "mode",
+            "on-click-forward": "tz_up",
+            "on-click-backward": "tz_down",
+            "on-scroll-up": "shift_up",
+            "on-scroll-down": "shift_down"
+        },
+        "cpu": {
+            "format": "{usage}% 󰍛",
+            "interval": 1,
+            "format-alt-click": "click",
+            "format-alt": "{icon0}{icon1}{icon2}{icon3} {usage:>2}% 󰍛",
+            "format-icons": [
+                "▁",
+                "▂",
+                "▃",
+                "▄",
+                "▅",
+                "▆",
+                "▇",
+                "█"
+            ],
+            "on-click-right": "gnome-system-monitor"
+        },
+        "memory": {
+            "interval": 10,
+            "format": "{used:0.1f}G 󰾆",
+            "format-alt": "{percentage}% 󰾆",
+            "format-alt-click": "click",
+            "tooltip": true,
+            "tooltip-format": "{used:0.1f}GB/{total:0.1f}G",
+            "on-click-right": "kitty --title btop sh -c 'btop'"
+        },
+        "network": {
+            "format": "{ifname}",
+            "format-wifi": "{icon}",
+            "format-ethernet": "󰌘",
+            "format-disconnected": "󰌙",
+            "tooltip-format": "{ipaddr}  {bandwidthUpBytes}  {bandwidthDownBytes}",
+            "format-linked": "󰈁 {ifname} (No IP)",
+            "tooltip-format-wifi": "{essid} {icon} {signalStrength}%",
+            "tooltip-format-ethernet": "{ifname} 󰌘",
+            "tooltip-format-disconnected": "󰌙 Disconnected",
+            "max-length": 50,
+            "format-icons": [
+                "󰤯",
+                "󰤟",
+                "󰤢",
+                "󰤥",
+                "󰤨"
+            ]
+        },
+        "network#speed": {
+            "interval": 1,
+            "format": "{ifname}",
+            "format-wifi": "{icon}  {bandwidthUpBytes}  {bandwidthDownBytes}",
+            "format-ethernet": "󰌘   {bandwidthUpBytes}  {bandwidthDownBytes}",
+            "format-disconnected": "󰌙",
+            "tooltip-format": "{ipaddr}",
+            "format-linked": "󰈁 {ifname} (No IP)",
+            "tooltip-format-wifi": "{essid} {icon} {signalStrength}%",
+            "tooltip-format-ethernet": "{ifname} 󰌘",
+            "tooltip-format-disconnected": "󰌙 Disconnected",
+            "max-length": 50,
+            "format-icons": [
+                "󰤯",
+                "󰤟",
+                "󰤢",
+                "󰤥",
+                "󰤨"
+            ]
+        },
+        "pulseaudio": {
+            "format": "{icon} {volume}%",
+            "format-bluetooth": "{icon} 󰂰 {volume}%",
+            "format-muted": "󰖁",
+            "format-icons": {
+                "headphone": "",
+                "hands-free": "",
+                "headset": "",
+                "phone": "",
+                "portable": "",
+                "car": "",
+                "default": [
+                    "",
+                    "",
+                    "󰕾",
+                    ""
+                ],
+                "ignored-sinks": [
+                    "Easy Effects Sink"
+                ]
+            },
+            "scroll-step": 5.0,
+            "on-click": "pavucontrol",
+            "on-click-right": "pavucontrol -t 3",
+            "on-scroll-up": "pactl set-sink-volume @DEFAULT_SINK@ +1%",
+            "on-scroll-down": "pactl set-sink-volume @DEFAULT_SINK@ -1%",
+            "tooltip-format": "{icon} {desc} | {volume}%",
+            "smooth-scrolling-threshold": 1
+        },
+        "mpd": {
+            "format": "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{artist} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S})",
+            "format-disconnected": "Disconnected",
+            "format-stopped": "{consumeIcon}{randomIcon}{repeatIcon}{singleIcon}Stopped",
+            "unknown-tag": "N/A",
+            "interval": 2,
+            "consume-icons": {
+                "on": " "
+            },
+            "random-icons": {
+                "off": "<span color=\"#f53c3c\"></span> ",
+                "on": " "
+            },
+            "repeat-icons": {
+                "on": " "
+            },
+            "single-icons": {
+                "on": "1 "
+            },
+            "state-icons": {
+                "paused": "",
+                "playing": ""
+            },
+            "tooltip-format": "MPD (connected)",
+            "tooltip-format-disconnected": "MPD (disconnected)"
+        }
+    },
+    {
+        "output": "DP-3",
+        "layer": "top",
+        "position": "top",
+        "height": "auto",
+        "modules-left": [
+            "sway/workspaces"
+        ],
+        "modules-center": [
+            "sway/window"
+        ],
+        "modules-right": [
+            "mpd",
+            "pulseaudio",
+            "tray",
+            "clock"
+        ],
+        // Modules configuration
+        "sway/workspaces": {
+            "active-only": false,
+            "all-outputs": false,
+            "format": "{icon}",
+            "show-special": false,
+            "on-click": "activate",
+            "format-icons": {
+                //"active": "",
+                //"default": ""
+                "1": "Ⅰ",
+                "2": "Ⅱ",
+                "3": "Ⅲ ",
+                "4": "Ⅳ",
+                "5": "Ⅴ",
+                "6": "Ⅵ",
+                "7": "Ⅶ",
+                "8": "Ⅷ",
+                "9": "Ⅸ",
+                "10": "Ⅹ"
+            }
+        },
+        "sway/window": {
+            "format": "{}",
+            "max-length": 40,
+            "separate-outputs": true,
+            "offscreen-css": true,
+            "offscreen-css-text": "(inactive)",
+            "rewrite": {
+                "(.*) — Mozilla Firefox": " $1",
+                "(.*) - fish": "> [$1]",
+                "(.*) - zsh": "> [$1]",
+                "(.*) - alacritty": "> [$1]"
+            }
+        },
+        "tray": {
+            "icon-size": 15,
+            "spacing": 8
+        },
+        "clock": {
+            "format-alt": "{:%Y-%m-%d}"
+        },
+        "pulseaudio": {
+            "format": "{icon} {volume}%",
+            "format-bluetooth": "{icon} 󰂰 {volume}%",
+            "format-muted": "󰖁",
+            "format-icons": {
+                "headphone": "",
+                "hands-free": "",
+                "headset": "",
+                "phone": "",
+                "portable": "",
+                "car": "",
+                "default": [
+                    "",
+                    "",
+                    "󰕾",
+                    ""
+                ],
+                "ignored-sinks": [
+                    "Easy Effects Sink"
+                ]
+            },
+            "scroll-step": 5.0,
+            "on-click": "pavucontrol",
+            "on-click-right": "pavucontrol -t 3",
+            "on-scroll-up": "pactl set-sink-volume @DEFAULT_SINK@ +1%",
+            "on-scroll-down": "pactl set-sink-volume @DEFAULT_SINK@ -1%",
+            "tooltip-format": "{icon} {desc} | {volume}%",
+            "smooth-scrolling-threshold": 1
+        },
+        "mpd": {
+            "format": "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{title} ({elapsedTime:%M:%S}/{totalTime:%M:%S})",
+            "format-disconnected": "Disconnected",
+            "format-stopped": "{consumeIcon}{randomIcon}{repeatIcon}{singleIcon}Stopped",
+            "unknown-tag": "N/A",
+            "interval": 2,
+            "consume-icons": {
+                "on": " "
+            },
+            "random-icons": {
+                "off": "<span color=\"#f53c3c\"></span> ",
+                "on": " "
+            },
+            "repeat-icons": {
+                "on": " "
+            },
+            "single-icons": {
+                "on": "1 "
+            },
+            "state-icons": {
+                "paused": "",
+                "playing": ""
+            },
+            "tooltip-format": "MPD (connected)",
+            "tooltip-format-disconnected": "MPD (disconnected)"
+        }
+    },
+    {
+        "output": "DP-2",
+        "layer": "top",
+        "position": "top",
+        "height": "auto",
+        "modules-left": [
+            "sway/workspaces"
+        ],
+        "modules-center": [
+            "sway/window"
+        ],
+        "modules-right": [
+            "mpd",
+            "pulseaudio",
+            "tray",
+            "clock"
+        ],
+        // Modules configuration
+        "sway/workspaces": {
+            "active-only": false,
+            "all-outputs": false,
+            "format": "{icon}",
+            "show-special": false,
+            "on-click": "activate",
+            "format-icons": {
+                //"active": "",
+                //"default": ""
+                "1": "Ⅰ",
+                "2": "Ⅱ",
+                "3": "Ⅲ ",
+                "4": "Ⅳ",
+                "5": "Ⅴ",
+                "6": "Ⅵ",
+                "7": "Ⅶ",
+                "8": "Ⅷ",
+                "9": "Ⅸ",
+                "10": "Ⅹ"
+            }
+        },
+        "sway/window": {
+            "format": "{}",
+            "max-length": 40,
+            "separate-outputs": true,
+            "offscreen-css": true,
+            "offscreen-css-text": "(inactive)",
+            "rewrite": {
+                "(.*) — Mozilla Firefox": " $1",
+                "(.*) - fish": "> [$1]",
+                "(.*) - zsh": "> [$1]",
+                "(.*) - alacritty": "> [$1]"
+            }
+        },
+        "tray": {
+            "icon-size": 15,
+            "spacing": 8
+        },
+        "clock": {
+            "format-alt": "{:%Y-%m-%d}"
+        },
+        "pulseaudio": {
+            "format": "{icon} {volume}%",
+            "format-bluetooth": "{icon} 󰂰 {volume}%",
+            "format-muted": "󰖁",
+            "format-icons": {
+                "headphone": "",
+                "hands-free": "",
+                "headset": "",
+                "phone": "",
+                "portable": "",
+                "car": "",
+                "default": [
+                    "",
+                    "",
+                    "󰕾",
+                    ""
+                ],
+                "ignored-sinks": [
+                    "Easy Effects Sink"
+                ]
+            },
+            "scroll-step": 5.0,
+            "on-click": "pavucontrol",
+            "on-click-right": "pavucontrol -t 3",
+            "on-scroll-up": "pactl set-sink-volume @DEFAULT_SINK@ +1%",
+            "on-scroll-down": "pactl set-sink-volume @DEFAULT_SINK@ -1%",
+            "tooltip-format": "{icon} {desc} | {volume}%",
+            "smooth-scrolling-threshold": 1
+        },
+        "mpd": {
+            "format": "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{title} ({elapsedTime:%M:%S}/{totalTime:%M:%S})",
+            "format-disconnected": "Disconnected",
+            "format-stopped": "{consumeIcon}{randomIcon}{repeatIcon}{singleIcon}Stopped",
+            "unknown-tag": "N/A",
+            "interval": 2,
+            "consume-icons": {
+                "on": " "
+            },
+            "random-icons": {
+                "off": "<span color=\"#f53c3c\"></span> ",
+                "on": " "
+            },
+            "repeat-icons": {
+                "on": " "
+            },
+            "single-icons": {
+                "on": "1 "
+            },
+            "state-icons": {
+                "paused": "",
+                "playing": ""
+            },
+            "tooltip-format": "MPD (connected)",
+            "tooltip-format-disconnected": "MPD (disconnected)"
+        }
+    }
+]

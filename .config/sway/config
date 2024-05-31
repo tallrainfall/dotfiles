@@ -39,10 +39,12 @@ input "12815:20555:Glorious_GMMK_V2_96_ANSI_Keyboard" xkb_numlock enable
 for_window [class="steam_app*"] inhibit_idle focus
 for_window [class="ffxiv_dx11.exe"] inhibit_idle open
 for_window [class="ffxiv_dx11.exe"] floating enable
+for_window [class="FTL.amd64"] move to workspace number 4
 for_window [app_id="mpv"] inhibit_idle focus
 for_window [app_id="mpv"] floating enable
 for_window [class="battle.net.exe"] floating enable
 for_window [app_id="galculator"] floating enable
+for_window [app_id="Waydroid"] floating enable
 
 ### Key bindings
 #
@@ -157,8 +159,11 @@ bindsym $mod+o exec python ~/bin/ffxiv-otp.py
 bindsym $mod+v exec cliphist list | wofi --dmenu | cliphist decode | wl-copy
 bindsym $mod+Shift+v exec cliphist wipe
 
+#swaync
+bindsym $mod+Shift+n exec swaync-client -t -sw
+
 #start pcmanfm
-bindsym $mod+e exec pcmanfm-qt
+bindsym $mod+e exec pcmanfm
 
 #media
 bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +1%
@@ -188,10 +193,10 @@ exec_always {
     gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
     gsettings set org.freedesktop.appearance.color-scheme 'prefer-dark'
 }
-exec /usr/lib/polkit-kde-authentication-agent-1
-exec pcmanfm-qt -d
+exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+exec pcmanfm -d
 exec steam -silent
-exec solaar --window=hide
+exec ckb-next -b -p Default
 exec blueman-applet
 exec corectrl --minimize-systray
 exec wljoywake

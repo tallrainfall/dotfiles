@@ -1,12 +1,13 @@
 #!/usr/bin/env bash
 
-export RADV_PERFTEST=gpl,sam,bolist
-
-rm $HOME/.xlcore/wineprefix/drive_c/users/$USER/AppData/Local/NUCefSharp/pid.txt
+export RADV_PERFTEST=gpl,sam
+export DXVK_CONFIG_FILE=$HOME/.xlcore/ffxiv/game/dxvk.conf
+export XL_NO_KILLSWITCH=true
 
 if pgrep -fx "XIVLauncher.Core" >/dev/null 2>&1
 then
     killall XIVLauncher.Core
 fi
 
+#ENABLE_GAMESCOPE_WSI=0 gamescope --force-grab-cursor -W 3440 -H 1440 -w 3440 -h 1440 -r 144 -f -- xivlauncher-rb
 xivlauncher-rb
