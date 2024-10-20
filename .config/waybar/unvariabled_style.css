@@ -1,5 +1,5 @@
 /* import a css file containing variables, but with no pseudo classes */
-@import url('/home/lfron/.cache/wal/colors-waybar.css');
+@import url('/home/gwen/.cache/wal/colors-waybar.css');
 
 @define-color bar_bg alpha(@background, $alpha);
 
@@ -55,7 +55,6 @@ window#waybar {
 #battery,
 #cpu,
 #memory,
-#network,
 #pulseaudio,
 #mpd,
 #tray,
@@ -106,12 +105,6 @@ window#waybar {
 }
 
 #memory {
-}
-
-#network {
-}
-
-#network.disconnected {
 }
 
 #pulseaudio {

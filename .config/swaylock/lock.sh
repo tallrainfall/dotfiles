@@ -23,4 +23,9 @@ swaylock \
   --ring-color "$background" \
   --ring-clear-color "$color2" \
   --ring-wrong-color "$color5" \
-  --ring-ver-color "$color3"
+  --ring-ver-color "$color3" \
+  --grace 10 \
+  --grace-no-mouse \
+  --clock \
+  --indicator \
+  --ignore-empty-password

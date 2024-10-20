@@ -22,12 +22,13 @@ for_window [floating] border pixel 6
 #gaps inner 5
 #gaps outer 2
 
-output DP-1 mode 3440x1440@144Hz pos 0 830 adaptive_sync off
-output DP-2 mode 2560x1440@144Hz pos 3440 0 transform 90 adaptive_sync off
-output DP-3 mode 1920x1080@144Hz pos 4880 980 adaptive_sync off
-workspace 1 output DP-1
-workspace 3 output DP-2
-workspace 2 output DP-3
+#output DP-1 mode 3440x1440@144Hz pos 0 830 adaptive_sync off
+#output DP-2 mode 2560x1440@144Hz pos 3440 0 transform 90 adaptive_sync off
+#output DP-3 mode 1920x1080@144Hz pos 4880 980 adaptive_sync off
+output HDMI-A-1 mode 1920x1080@60Hz pos 0 0
+#workspace 1 output DP-1
+#workspace 3 output DP-2
+#workspace 2 output DP-3
 
 input type:pointer {
 	accel_profile "flat"
@@ -37,8 +38,8 @@ input type:pointer {
 input "12815:20555:Glorious_GMMK_V2_96_ANSI_Keyboard" xkb_numlock enable
 
 for_window [class="steam_app*"] inhibit_idle focus
-for_window [class="ffxiv_dx11.exe"] inhibit_idle open
-for_window [class="ffxiv_dx11.exe"] floating enable
+#for_window [class="ffxiv_dx11.exe"] inhibit_idle open
+#for_window [class="ffxiv_dx11.exe"] floating enable
 for_window [class="FTL.amd64"] move to workspace number 4
 for_window [app_id="mpv"] inhibit_idle focus
 for_window [app_id="mpv"] floating enable
@@ -193,11 +194,13 @@ exec_always {
     gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
     gsettings set org.freedesktop.appearance.color-scheme 'prefer-dark'
 }
-exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+exec /usr/lib/polkit-kde-authentication-agent-1
 exec pcmanfm -d
 exec steam -silent
-exec ckb-next -b -p Default
+exec solaar -w hide
 exec blueman-applet
 exec corectrl --minimize-systray
 exec wljoywake
 exec wl-paste --watch cliphist store
+exec waypaper --restore
+exec nm-applet
