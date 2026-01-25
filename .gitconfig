@@ -1,3 +1,8 @@
 [user]
 	email = tallrainfall@protonmail.com
 	name = Sirius Fron
+	signingkey = CF8B96B9F3993DD1
+[commit]
+	gpgsign = true
+[tag]
+	gpgSign = true
