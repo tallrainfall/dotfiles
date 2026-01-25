@@ -1,7 +1,7 @@
 /* import a css file containing variables, but with no pseudo classes */
-@import url('/home/gwen/.cache/wal/colors-waybar.css');
+@import url('/home/tallrainfall/.cache/wal/colors-waybar.css');
 
-@define-color bar_bg alpha(@background, 0.5);
+@define-color bar_bg alpha(@background, 0.1);
 
 * {
     border: none;
@@ -34,15 +34,15 @@ window#waybar {
 }
 
 #workspaces button.urgent,
-#workspaces button.focused {
+#workspaces button.active {
     background: alpha(@color6, .6);
     border-bottom: 3px solid alpha(@color4, .3);
     border-radius: 8px 0 8px 0;
 }
 
-#workspaces button:hover {
+/*#workspaces button:hover {
     border-top: 3px solid @color2;
-}
+}*/
 
 #workspaces button.urgent {
     background: alpha(@color6, .8);
