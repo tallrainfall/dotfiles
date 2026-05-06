@@ -104,3 +104,5 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 . "$HOME/.local/bin/env"
+
+. "$HOME/.local/share/../bin/env"

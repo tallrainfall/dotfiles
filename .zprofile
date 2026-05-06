@@ -18,9 +18,6 @@ export NUGET_PACKAGES="$XDG_CACHE_HOME"/NuGetPackages
 export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR"/gcr/ssh
 export WINEPREFIX="$XDG_DATA_HOME"/wine
 export MOZ_DBUS_REMOTE=1
-export DISABLE_LAYER_AMD_SWITCHABLE_GRAPHICS_1=1
-export VK_ICD_FILENAMES=/usr/share/vulkan/icd.d/radeon_icd.i686.json:/usr/share/vulkan/icd.d/radeon_icd.x86_64.json
-export VDPAU_DRIVER=radeonsi
 #if [ -z "${WAYLAND_DISPLAY}" ] && [ "${XDG_VTNR}" -eq 1 ]; then
 #  exec sway
 #fi
